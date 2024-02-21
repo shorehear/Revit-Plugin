@@ -1,0 +1,6 @@
+C:\Users\abyankina\source\repos\RvAPI\RvAPI\bin\Debug\RvAPI.dll
+C:\Users\abyankina\source\repos\RvAPI\RvAPI\bin\Debug\RvAPI.pdb
+C:\Users\abyankina\source\repos\RvAPI\RvAPI\obj\Debug\RvAPI.csproj.AssemblyReference.cache
+C:\Users\abyankina\source\repos\RvAPI\RvAPI\obj\Debug\RvAPI.csproj.CoreCompileInputs.cache
+C:\Users\abyankina\source\repos\RvAPI\RvAPI\obj\Debug\RvAPI.dll
+C:\Users\abyankina\source\repos\RvAPI\RvAPI\obj\Debug\RvAPI.pdb
