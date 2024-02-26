@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Plugin
 
 
@@ -18,3 +19,25 @@ Window.xaml;
 
 False
 
+=======
+﻿Plugin
+
+
+library
+C#
+.cs
+C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\
+Plugin
+none
+false
+DEBUG;TRACE
+
+11981197698
+
+546709405
+151665652090
+Window.xaml;
+
+False
+
+>>>>>>> df9d18eefb07f6425ffd24c7822836ce112a4e96
