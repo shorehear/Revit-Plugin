@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Plugin.csproj.AssemblyReference.cache
 C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Plugin_MarkupCompile.cache
 C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Plugin_MarkupCompile.lref
@@ -10,16 +9,3 @@ C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Plugin.dll
 C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Plugin.pdb
 C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Window.g.cs
 C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Window.baml
-=======
-C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Plugin.csproj.AssemblyReference.cache
-C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Plugin_MarkupCompile.cache
-C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Plugin_MarkupCompile.lref
-C:\Users\kaidy\source\repos\Plugin\Plugin\bin\Debug\Plugin.dll
-C:\Users\kaidy\source\repos\Plugin\Plugin\bin\Debug\Plugin.pdb
-C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Plugin.g.resources
-C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Plugin.csproj.CoreCompileInputs.cache
-C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Plugin.dll
-C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Plugin.pdb
-C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Window.g.cs
-C:\Users\kaidy\source\repos\Plugin\Plugin\obj\Debug\Window.baml
->>>>>>> df9d18eefb07f6425ffd24c7822836ce112a4e96
