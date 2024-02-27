@@ -9,3 +9,14 @@ C:\Users\abyankina\Source\Repos\Revit-Plugin\Plugin\obj\Debug\Plugin.g.resources
 C:\Users\abyankina\Source\Repos\Revit-Plugin\Plugin\obj\Debug\Revit-Plugin.csproj.CoreCompileInputs.cache
 C:\Users\abyankina\Source\Repos\Revit-Plugin\Plugin\obj\Debug\Plugin.dll
 C:\Users\abyankina\Source\Repos\Revit-Plugin\Plugin\obj\Debug\Plugin.pdb
+C:\Users\abyankina\Source\Repos\Revit-Plugin1\Plugin\bin\Debug\Plugin.dll
+C:\Users\abyankina\Source\Repos\Revit-Plugin1\Plugin\bin\Debug\Plugin.pdb
+C:\Users\abyankina\Source\Repos\Revit-Plugin1\Plugin\obj\Debug\Revit-Plugin.csproj.AssemblyReference.cache
+C:\Users\abyankina\Source\Repos\Revit-Plugin1\Plugin\obj\Debug\Window.g.cs
+C:\Users\abyankina\Source\Repos\Revit-Plugin1\Plugin\obj\Debug\Plugin_MarkupCompile.cache
+C:\Users\abyankina\Source\Repos\Revit-Plugin1\Plugin\obj\Debug\Plugin_MarkupCompile.lref
+C:\Users\abyankina\Source\Repos\Revit-Plugin1\Plugin\obj\Debug\Window.baml
+C:\Users\abyankina\Source\Repos\Revit-Plugin1\Plugin\obj\Debug\Plugin.g.resources
+C:\Users\abyankina\Source\Repos\Revit-Plugin1\Plugin\obj\Debug\Revit-Plugin.csproj.CoreCompileInputs.cache
+C:\Users\abyankina\Source\Repos\Revit-Plugin1\Plugin\obj\Debug\Plugin.dll
+C:\Users\abyankina\Source\Repos\Revit-Plugin1\Plugin\obj\Debug\Plugin.pdb
