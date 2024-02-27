@@ -76,9 +76,7 @@ namespace Plugin
         public void CreateElementWithBoth(double angleOfInclination, XYZ position) { }
         private XYZ RotateVector(XYZ vector, double angle)
         {
-            // Добавьте свою логику вращения вектора здесь
-            // Это может включать в себя использование матрицы вращения или другие методы вращения вектора
-            // В данном примере просто возвращается исходный вектор, так как угол наклона равен 0
+
             return vector;
         }
     }
