@@ -1,0 +1,11 @@
+C:\Users\abyankina\source\repos\ElementCopier-Plugin\ElementCopier-Plugin\bin\Debug\ElementCopier-Plugin.dll
+C:\Users\abyankina\source\repos\ElementCopier-Plugin\ElementCopier-Plugin\bin\Debug\ElementCopier-Plugin.pdb
+C:\Users\abyankina\source\repos\ElementCopier-Plugin\ElementCopier-Plugin\obj\Debug\ElementCopier-Plugin.csproj.AssemblyReference.cache
+C:\Users\abyankina\source\repos\ElementCopier-Plugin\ElementCopier-Plugin\obj\Debug\Window.g.cs
+C:\Users\abyankina\source\repos\ElementCopier-Plugin\ElementCopier-Plugin\obj\Debug\ElementCopier-Plugin_MarkupCompile.cache
+C:\Users\abyankina\source\repos\ElementCopier-Plugin\ElementCopier-Plugin\obj\Debug\ElementCopier-Plugin_MarkupCompile.lref
+C:\Users\abyankina\source\repos\ElementCopier-Plugin\ElementCopier-Plugin\obj\Debug\Window.baml
+C:\Users\abyankina\source\repos\ElementCopier-Plugin\ElementCopier-Plugin\obj\Debug\ElementCopier-Plugin.g.resources
+C:\Users\abyankina\source\repos\ElementCopier-Plugin\ElementCopier-Plugin\obj\Debug\ElementCopier-Plugin.csproj.CoreCompileInputs.cache
+C:\Users\abyankina\source\repos\ElementCopier-Plugin\ElementCopier-Plugin\obj\Debug\ElementCopier-Plugin.dll
+C:\Users\abyankina\source\repos\ElementCopier-Plugin\ElementCopier-Plugin\obj\Debug\ElementCopier-Plugin.pdb
