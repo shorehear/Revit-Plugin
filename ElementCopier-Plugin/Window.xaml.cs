@@ -14,7 +14,7 @@ public partial class MainWindow : Window
     private TextBox rotateTextBox;
     private CheckBox useMove;
     private CheckBox useRotate;
-    private char rotationAxis;
+    private char rotationXYZ;
 
     private DB.Document doc;
     private DB.Element selectedElement;
@@ -107,7 +107,7 @@ public partial class MainWindow : Window
         RadioButton[] radioButtons = { radioButtonX, radioButtonY, radioButtonZ };
         foreach (RadioButton radioButton in radioButtons)
         {
-            radioButton.Checked += (sender, e) => { rotationAxis = radioButton.Content.ToString()[0]; };
+            radioButton.Checked += (sender, e) => { rotationXYZ = radioButton.Content.ToString()[0]; };
             panel.Children.Add(radioButton);
         }
 
@@ -142,21 +142,6 @@ public partial class MainWindow : Window
             return ObjectState.NeedBoth;
         }
     }
-    public XYZ GetRotationBasis(char rotationAxis)
-    {
-        switch (rotationAxis)
-        {
-            case 'X':
-                return XYZ.BasisX;
-            case 'Y':
-                return XYZ.BasisY;
-            case 'Z':
-                return XYZ.BasisZ;
-            default:
-                return XYZ.Zero;
-        }
-    }
-
     private void OkButton_Click(object sender, RoutedEventArgs e)
     {
         try
@@ -184,12 +169,12 @@ public partial class MainWindow : Window
                     break;
 
                 case ObjectState.NeedRotation:
-                    double rotationAngle = double.Parse(rotateTextBox.Text);
 
                     ElementCopier rotationCopier = new ElementCopier(doc, selectedElement);
                     rotationCopier.AmountOfElements = int.Parse(amountTextBox.Text);
                     rotationCopier.DistanceBetweenElements = double.Parse(distanceTextBox.Text);
-                    rotationCopier.RotateCopiedElements(GetRotationBasis(rotationAxis), rotationAngle);
+
+                    rotationCopier.RotateCopiedElements();
                     break;
 
                 case ObjectState.NeedBoth:

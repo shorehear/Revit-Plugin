@@ -70,15 +70,14 @@ namespace Plugin
             }
         }
 
-
-        public void RotateCopiedElements(XYZ rotationBasis, double angle)
+        public void RotateCopiedElements(Line rotationAxis, double angle)
         {
             if (selectedElement != null)
             {
                 Transaction transaction = new Transaction(doc, "Поворот элементов");
                 if (transaction.Start() == TransactionStatus.Started)
                 {
-                    XYZ previousAxis = rotationBasis;
+                    Line previousAxis = rotationAxis;
 
                     for (int i = 0; i < AmountOfElements; i++)
                     {
@@ -91,8 +90,8 @@ namespace Plugin
                             ElementId newElementId = newElementIds.FirstOrDefault();
                             Element newElement = doc.GetElement(newElementId);
 
-                            ElementTransformUtils.RotateElement(doc, newElementId, Line.CreateBound(previousAxis, previousAxis), angle);
-                            previousAxis = rotationBasis;
+                            Rotate(newElementId, previousAxis, angle);
+                            previousAxis = rotationAxis;
                         }
 
                         translation = translation.Add(new XYZ(DistanceBetweenElements, 0, 0));
@@ -102,6 +101,24 @@ namespace Plugin
                 }
             }
         }
+
+        public void Rotate(ElementId elementId, Line axis, double angle)
+        {
+            Element selectedElement = doc.GetElement(elementId);
+
+            if (selectedElement != null)
+            {
+                try
+                {
+                    ElementTransformUtils.RotateElement(doc, elementId, axis, angle);
+                }
+                catch (Exception ex)
+                {
+                    TaskDialog.Show("Error", ex.Message);
+                }
+            }
+        }
+
 
         public void RotateMoveCopiedElement(XYZ position, double angle, char axis) { }
     }
