@@ -56,12 +56,26 @@
     <Compile Include="ElementCopier.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Window.xaml.cs">
-      <DependentUpon>Window.xaml</DependentUpon>
+    <Compile Include="ChoiceWindow.xaml.cs">
+      <DependentUpon>ChoiceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomCopyWindow.xaml.cs">
+      <DependentUpon>CustomCopyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DefaultCopyWindow.xaml.cs">
+      <DependentUpon>DefaultCopyWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Window.xaml">
+    <Page Include="ChoiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomCopyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DefaultCopyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
