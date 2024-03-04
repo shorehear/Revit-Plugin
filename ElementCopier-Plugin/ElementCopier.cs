@@ -7,26 +7,31 @@ namespace Plugin
 {
     public class ElementCopier
     {
-        private Element selectedElement;
         private Document doc;
+        private Element selectedElement;
+        private CurveElement selectedLine;
+
         public int AmountOfElements;
         public double DistanceBetweenElements;
-        public double AngleOfInclination;
-        public ElementCopier(Document doc, Element selectedElement)
+        public double RotationAngle;
+
+        public ElementCopier(Document doc, Element selectedElement, CurveElement selectedLine = null)
         {
             this.doc = doc;
             this.selectedElement = selectedElement;
+            this.selectedLine = selectedLine;
         }
 
-        //Стандартное создание элемента, задает нахождение от исходного по координате X.
         public void CopyElements()
         {
-            if (selectedElement != null)
+            if (selectedElement != null && selectedLine != null)
             {
-                Transaction transaction = new Transaction(doc, "Создание элементов");
+                Transaction transaction = new Transaction(doc, "Копирование и вращение элементов");
                 if (transaction.Start() == TransactionStatus.Started)
                 {
                     XYZ translation = new XYZ(DistanceBetweenElements, 0, 0);
+
+                    double rotationAngle = GetRotationAngle(selectedElement, selectedLine);
 
                     for (int i = 0; i < AmountOfElements; i++)
                     {
@@ -34,22 +39,36 @@ namespace Plugin
 
                         if (newElementIds.Count > 0)
                         {
+                            Element newElement = doc.GetElement(newElementIds.First());
+                            ElementTransformUtils.RotateElement(doc, newElement.Id, Line.CreateBound(new XYZ(0, 0, 0), XYZ.BasisZ), rotationAngle);
+
                             translation = translation.Add(new XYZ(DistanceBetweenElements, 0, 0));
                         }
                     }
                     transaction.Commit();
                 }
             }
+        } // Копирование объектов, если дистанция ними задается по оси абсцисс/не задается вовсе.
+
+        private double GetRotationAngle(Element selectedElement, CurveElement selectedLine)
+        {
+            XYZ lineDirection = (selectedLine as ModelCurve).GeometryCurve.GetEndPoint(1) - (selectedLine as ModelCurve).GeometryCurve.GetEndPoint(0);
+            XYZ elementDirection = (selectedElement.Location as LocationCurve).Curve.GetEndPoint(1) - (selectedElement.Location as LocationCurve).Curve.GetEndPoint(0);
+
+            double rotationAngle = lineDirection.AngleTo(elementDirection);
+
+            return rotationAngle;
         }
 
         public void MoveCopiedElements(XYZ position)
         {
-            if (selectedElement != null)
+            if (selectedElement != null && selectedLine != null)
             {
-                Transaction transaction = new Transaction(doc, "Перемещение элементов");
+                Transaction transaction = new Transaction(doc, "Копирование, перемещение и вращение элементов");
                 if (transaction.Start() == TransactionStatus.Started)
                 {
-                    XYZ translation = new XYZ(0, 0, 0); // Начальное смещение равно нулю
+                    XYZ translation = new XYZ(DistanceBetweenElements, 0, 0); 
+                    double rotationAngle = GetRotationAngle(selectedElement, selectedLine);
 
                     for (int i = 0; i < AmountOfElements; i++)
                     {
@@ -59,39 +78,8 @@ namespace Plugin
                         {
                             ElementId newElementId = newElementIds.FirstOrDefault();
                             Element newElement = doc.GetElement(newElementId);
-                            ElementTransformUtils.MoveElement(doc, newElement.Id, position + translation); 
-                        }
-
-                        translation = translation.Add(new XYZ(DistanceBetweenElements, 0, 0)); 
-                    }
-
-                    transaction.Commit();
-                }
-            }
-        }
-
-        public void RotateCopiedElements(Line rotationAxis, double angle)
-        {
-            if (selectedElement != null)
-            {
-                Transaction transaction = new Transaction(doc, "Поворот элементов");
-                if (transaction.Start() == TransactionStatus.Started)
-                {
-                    Line previousAxis = rotationAxis;
-
-                    for (int i = 0; i < AmountOfElements; i++)
-                    {
-                        XYZ translation = new XYZ(DistanceBetweenElements, 0, 0);
-
-                        ICollection<ElementId> newElementIds = ElementTransformUtils.CopyElement(doc, selectedElement.Id, translation);
-
-                        if (newElementIds != null && newElementIds.Count > 0)
-                        {
-                            ElementId newElementId = newElementIds.FirstOrDefault();
-                            Element newElement = doc.GetElement(newElementId);
-
-                            Rotate(newElementId, previousAxis, angle);
-                            previousAxis = rotationAxis;
+                            ElementTransformUtils.RotateElement(doc, newElement.Id, Line.CreateBound(new XYZ(0, 0, 0), XYZ.BasisZ), rotationAngle);
+                            ElementTransformUtils.MoveElement(doc, newElement.Id, position + translation);
                         }
 
                         translation = translation.Add(new XYZ(DistanceBetweenElements, 0, 0));
@@ -100,26 +88,7 @@ namespace Plugin
                     transaction.Commit();
                 }
             }
-        }
-
-        public void Rotate(ElementId elementId, Line axis, double angle)
-        {
-            Element selectedElement = doc.GetElement(elementId);
-
-            if (selectedElement != null)
-            {
-                try
-                {
-                    ElementTransformUtils.RotateElement(doc, elementId, axis, angle);
-                }
-                catch (Exception ex)
-                {
-                    TaskDialog.Show("Error", ex.Message);
-                }
-            }
-        }
-
-
-        public void RotateMoveCopiedElement(XYZ position, double angle, char axis) { }
+        } //Копирование объектов, если дистанция между ними задается по произвольной оси.
     }
 }
+
