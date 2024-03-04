@@ -15,10 +15,10 @@ namespace Plugin
         {
             try
             {
+
                 ChoiceWindow choiceWindow = new ChoiceWindow();
                 choiceWindow.ChoiceMade += ChoiceWindow_ChoiceMade;
                 choiceWindow.ShowDialog();
-
 
                 var uiapp = commandData.Application;
                 var uidoc = uiapp.ActiveUIDocument;
@@ -62,27 +62,24 @@ namespace Plugin
                         customCopyWindow.ShowDialog();
                     }
                 }
-                else
-                {
-                    return Result.Cancelled;
-                }
+                else { return Result.Cancelled; }
 
             }
+
             catch (Autodesk.Revit.Exceptions.OperationCanceledException)
             {
                 return Result.Cancelled;
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка: ", ex.Message);
                 return Result.Failed;
             }
+
             return Result.Succeeded;
         }
 
-        private void ChoiceWindow_ChoiceMade(object sender, bool isDefaultCopy)
-        {
-            typeOperation = isDefaultCopy ?  'D' : 'C';
-        }
+        private void ChoiceWindow_ChoiceMade(object sender, bool isDefaultCopy) { typeOperation = isDefaultCopy ?  'D' : 'C'; }
     }
 }
