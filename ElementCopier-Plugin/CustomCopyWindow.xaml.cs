@@ -125,7 +125,7 @@ namespace Plugin
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show($"Ошибка: {ex.Message}");
                 Close();
             }
             finally

@@ -16,8 +16,8 @@ namespace Plugin
         private void InitializeComponent()
         {
             Title = "Выбрать тип копирования";
-            Width = 400;
-            Height = 200;
+            Width = 350;
+            Height = 150;
 
             var infoLabel = new Label()
             {

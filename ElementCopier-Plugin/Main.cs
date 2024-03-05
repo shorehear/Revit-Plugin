@@ -20,13 +20,12 @@ namespace Plugin
                 choiceWindow.ChoiceMade += ChoiceWindow_ChoiceMade;
                 choiceWindow.ShowDialog();
 
-                var uiapp = commandData.Application;
-                var uidoc = uiapp.ActiveUIDocument;
-                var doc = uidoc.Document;
+                UIApplication uiapp = commandData.Application;
+                UIDocument uidoc = uiapp.ActiveUIDocument;
+                Document doc = uidoc.Document;
 
                 if (typeOperation == 'D')
                 {
-
                     Reference pickedRef = uidoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element, "Выберите элемент.");
                     if (pickedRef == null)
                         return Result.Cancelled;
@@ -39,7 +38,6 @@ namespace Plugin
                 }
                 else if (typeOperation == 'C')
                 {
-
                     Reference pickedRefObject = uidoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element, "Выберите элемент, затем выберите линию направления.");
                     Reference pickedRefLine = uidoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element, "Выберите линию направления.");
 
@@ -62,7 +60,9 @@ namespace Plugin
                         customCopyWindow.ShowDialog();
                     }
                 }
-                else { return Result.Cancelled; }
+                else { 
+                    return Result.Cancelled; 
+                }
 
             }
 

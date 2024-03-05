@@ -2,8 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using Autodesk.Revit.DB;
-using DB = Autodesk.Revit.DB;
-using TextBox = System.Windows.Controls.TextBox;
 using Plugin;
 
 public partial class DefaultWindow : Window, IDisposable
@@ -13,10 +11,10 @@ public partial class DefaultWindow : Window, IDisposable
     private TextBox coordinatesTextBox;
     private CheckBox useMove;
 
-    private DB.Document doc;
-    private DB.Element selectedElement;
+    private readonly Document doc;
+    private readonly Element selectedElement;
 
-    public DefaultWindow(DB.Document doc, DB.Element selectedElement)
+    public DefaultWindow(Document doc, Element selectedElement)
     {
         this.doc = doc;
         this.selectedElement = selectedElement;
@@ -98,9 +96,11 @@ public partial class DefaultWindow : Window, IDisposable
             switch (move)
             {
                 case false:
-                    ElementCopier defaultCopier = new ElementCopier(doc, selectedElement);
-                    defaultCopier.AmountOfElements = int.Parse(amountTextBox.Text);
-                    defaultCopier.DistanceBetweenElements = double.Parse(distanceTextBox.Text);
+                    ElementCopier defaultCopier = new ElementCopier(doc, selectedElement)
+                    {
+                        AmountOfElements = int.Parse(amountTextBox.Text),
+                        DistanceBetweenElements = double.Parse(distanceTextBox.Text)
+                    };
                     defaultCopier.CopyElements();
                     break;
 
@@ -108,9 +108,11 @@ public partial class DefaultWindow : Window, IDisposable
                     string[] pointCoordinates = coordinatesTextBox.Text.Split(',');
                     XYZ coordinatesPoint = new XYZ(double.Parse(pointCoordinates[0]), double.Parse(pointCoordinates[1]), double.Parse(pointCoordinates[2]));
 
-                    ElementCopier moveCopier = new ElementCopier(doc, selectedElement);
-                    moveCopier.AmountOfElements = int.Parse(amountTextBox.Text);
-                    moveCopier.DistanceBetweenElements = double.Parse(distanceTextBox.Text);
+                    ElementCopier moveCopier = new ElementCopier(doc, selectedElement)
+                    {
+                        AmountOfElements = int.Parse(amountTextBox.Text),
+                        DistanceBetweenElements = double.Parse(distanceTextBox.Text)
+                    };
                     moveCopier.MoveCopiedElements(coordinatesPoint);
                     break;
 
@@ -118,7 +120,7 @@ public partial class DefaultWindow : Window, IDisposable
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error: {ex.Message}");
+            MessageBox.Show($"Ошибка: {ex.Message}");
             Close();
         }
         finally

@@ -6,9 +6,9 @@ namespace Plugin
 {
     public class ElementCopier
     {
-        private Document doc;
-        private Element selectedElement;
-        private CurveElement selectedLine;
+        private readonly Document doc;
+        private readonly Element selectedElement;
+        private readonly CurveElement selectedLine;
 
         public int AmountOfElements;
         public double DistanceBetweenElements;
@@ -46,7 +46,7 @@ namespace Plugin
                     transaction.Commit();
                 }
             }
-            else if(selectedElement != null && selectedLine == null)
+            else if (selectedElement != null && selectedLine == null)
             {
                 Transaction transaction = new Transaction(doc, "Копирование элементов");
                 if (transaction.Start() == TransactionStatus.Started)
@@ -65,7 +65,7 @@ namespace Plugin
                     transaction.Commit();
                 }
             }
-        } // Копирование объектов, если дистанция ними задается по оси абсцисс/не задается вовсе.
+        } 
 
         private double GetRotationAngle(Element selectedElement, CurveElement selectedLine)
         {
@@ -130,7 +130,7 @@ namespace Plugin
                     transaction.Commit();
                 }
             }
-        } //Копирование объектов, если дистанция между ними задается по произвольной оси.
+        }
     }
 }
 
