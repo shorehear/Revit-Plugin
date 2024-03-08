@@ -8,12 +8,12 @@ namespace Plugin
     {
         private readonly Document doc;
         private readonly Element selectedElement;
-        private readonly CurveElement selectedLine;
+        private readonly Line selectedLine;
 
         public int AmountOfElements;
         public double DistanceBetweenElements;
 
-        public ElementCopier(Document doc, Element selectedElement, CurveElement selectedLine = null)
+        public ElementCopier(Document doc, Element selectedElement, Line selectedLine = null)
         {
             this.doc = doc;
             this.selectedElement = selectedElement;
@@ -65,17 +65,27 @@ namespace Plugin
                     transaction.Commit();
                 }
             }
-        } 
-
-        private double GetRotationAngle(Element selectedElement, CurveElement selectedLine)
-        {
-            XYZ lineDirection = (selectedLine as ModelCurve).GeometryCurve.GetEndPoint(1) - (selectedLine as ModelCurve).GeometryCurve.GetEndPoint(0);
-            XYZ elementDirection = (selectedElement.Location as LocationCurve).Curve.GetEndPoint(1) - (selectedElement.Location as LocationCurve).Curve.GetEndPoint(0);
-
-            double rotationAngle = lineDirection.AngleTo(elementDirection);
-
-            return rotationAngle;
         }
+
+        private double GetRotationAngle(Element selectedElement, Line selectedLine)
+        {
+            LocationCurve locationCurve = selectedElement.Location as LocationCurve;
+            if (locationCurve != null)
+            {
+                Curve elementCurve = locationCurve.Curve;
+                XYZ elementDirection = (elementCurve.GetEndPoint(1) - elementCurve.GetEndPoint(0)).Normalize();
+
+                XYZ lineDirection = (selectedLine.GetEndPoint(1) - selectedLine.GetEndPoint(0)).Normalize();
+
+                //угол между направлением элемента и линией
+                double angle = elementDirection.AngleTo(lineDirection);
+
+                return angle;
+            }
+
+            return 0.0;
+        }
+
 
         public void MoveCopiedElements(XYZ position)
         {
@@ -133,4 +143,3 @@ namespace Plugin
         }
     }
 }
-

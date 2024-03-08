@@ -19,9 +19,9 @@ namespace Plugin
 
         private DB.Document doc;
         private DB.Element selectedElement;
-        private DB.CurveElement selectedLine;
+        private DB.Line selectedLine;
 
-        public CustomCopyWindow (DB.Document doc, DB.Element selectedElement, DB.CurveElement selectedLine)
+        public CustomCopyWindow (DB.Document doc, DB.Element selectedElement, DB.Line selectedLine)
         {
             this.doc = doc;
             this.selectedElement = selectedElement;

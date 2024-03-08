@@ -10,12 +10,12 @@ namespace Plugin
     [Regeneration(RegenerationOption.Manual)]
     public class RVAPI : IExternalCommand
     {
-        private char typeOperation; 
+        private char typeOperation;
+
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             try
             {
-
                 ChoiceWindow choiceWindow = new ChoiceWindow();
                 choiceWindow.ChoiceMade += ChoiceWindow_ChoiceMade;
                 choiceWindow.ShowDialog();
@@ -53,15 +53,23 @@ namespace Plugin
                         return Result.Cancelled;
                     }
 
-                    CurveElement selectedLine = lineElement as CurveElement;
+                    // Modify this part to accept a Line instead of a CurveElement
+                    Line selectedLine = ((CurveElement)lineElement).GeometryCurve as Line;
+
+                    if (selectedLine == null)
+                    {
+                        TaskDialog.Show("Ошибка", "Выбранный элемент не является линией направления.");
+                        return Result.Cancelled;
+                    }
 
                     using (CustomCopyWindow customCopyWindow = new CustomCopyWindow(doc, selectedElement, selectedLine))
                     {
                         customCopyWindow.ShowDialog();
                     }
                 }
-                else { 
-                    return Result.Cancelled; 
+                else
+                {
+                    return Result.Cancelled;
                 }
 
             }
@@ -73,13 +81,13 @@ namespace Plugin
 
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка: ", ex.Message);
+                MessageBox.Show("Ошибка: " + ex.Message);
                 return Result.Failed;
             }
 
             return Result.Succeeded;
         }
 
-        private void ChoiceWindow_ChoiceMade(object sender, bool isDefaultCopy) { typeOperation = isDefaultCopy ?  'D' : 'C'; }
+        private void ChoiceWindow_ChoiceMade(object sender, bool isDefaultCopy) { typeOperation = isDefaultCopy ? 'D' : 'C'; }
     }
 }
