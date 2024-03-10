@@ -53,7 +53,6 @@ namespace Plugin
                         return Result.Cancelled;
                     }
 
-                    // Modify this part to accept a Line instead of a CurveElement
                     Line selectedLine = ((CurveElement)lineElement).GeometryCurve as Line;
 
                     if (selectedLine == null)

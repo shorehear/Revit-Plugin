@@ -77,7 +77,6 @@ namespace Plugin
 
                 XYZ lineDirection = (selectedLine.GetEndPoint(1) - selectedLine.GetEndPoint(0)).Normalize();
 
-                //угол между направлением элемента и линией
                 double angle = elementDirection.AngleTo(lineDirection);
 
                 return angle;
